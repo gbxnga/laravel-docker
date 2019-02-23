@@ -19,12 +19,14 @@ phases:
     - aws --version
     - eval $(aws ecr get-login --region us-east-1 --no-include-email | sed 's|https://||')
     - REPOSITORY_URI=650749741049.dkr.ecr.us-east-1.amazonaws.com/gbxnga/laravel-docker
-    - IMAGE_TAG=2.3
+    - IMAGE_TAG=2.4
   build:
     commands:
     - echo Build started on `date`
-    - echo installing composer
+    - echo installing composer..
     - composer install
+    - creating .env file..
+    - cp .env.example .env
     - echo Building the Docker image...
     - docker build -t $REPOSITORY_URI:latest .
     - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
