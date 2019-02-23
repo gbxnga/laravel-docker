@@ -19,7 +19,7 @@ phases:
     - aws --version
     - aws ecr get-login --region us-east-1 --no-include-email
     - REPOSITORY_URI=650749741049.dkr.ecr.us-east-1.amazonaws.com/laravel-docker
-    - IMAGE_TAG=latest
+    - IMAGE_TAG=6.3
   build:
     commands:
     - echo Build started on `date`
@@ -28,7 +28,9 @@ phases:
     - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
-    - echo Build completed on `date`
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 650749741049.dkr.ecr.us-east-1.amazonaws.com/laravel-docker:6.3
 #artifacts:
     # - location
     # - location
