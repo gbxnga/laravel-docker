@@ -30,7 +30,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 650749741049.dkr.ecr.us-east-1.amazonaws.com/laravel-docker:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
 #artifacts:
     # - location
     # - location
